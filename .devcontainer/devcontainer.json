@@ -1,0 +1,36 @@
+{
+	"name": "PX4",
+	"image": "px4io/px4-dev-ros2-foxy:2024-05-18",
+	// "remoteUser": "efliao",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/px4_ws,type=bind",
+	"workspaceFolder": "/px4_ws",
+	"mounts": [
+		"source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached,readonly",
+	],
+	"containerEnv": {
+		"DISPLAY": "${localEnv:DISPLAY}",
+		// "LOCAL_USER_ID": "$(id -u)"
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/bin/python3",
+				"editor.formatOnSave": true,
+				"editor.formatOnPaste": true,
+				"python.formatting.provider": "yapf",
+				"python.formatting.yapfArgs": [
+					"--style",
+					"{column_limit: 128}"
+				],
+				"python.linting.flake8Enabled": true,
+				"python.linting.flake8Args": [
+					"--max-line-length=128",
+					"--ignore=E131,E126,E302"
+				]
+			},
+			"extensions": [
+				"ms-python.python"
+			]
+		}
+	}
+}
